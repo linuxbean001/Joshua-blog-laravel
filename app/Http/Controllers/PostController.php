@@ -13,6 +13,8 @@ class PostController extends Controller
     } 
 
     function list() {
-        return blogpost::all();
+        //return blogpost::all();
+        $blogpost = blogpost::paginate(3);
+        return $blogpost;
       }
 }
