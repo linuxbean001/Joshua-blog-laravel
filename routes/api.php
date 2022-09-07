@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get("data",[PostController::class,'list']);
-
+Route::get("blogDetail/{id}",[PostController::class,'byid']);
+Route::get("relatedBlog/{by_Category}",[PostController::class,'reletedPost']);

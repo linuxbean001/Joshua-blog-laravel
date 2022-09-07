@@ -13,8 +13,17 @@ class PostController extends Controller
     } 
 
     function list() {
-        //return blogpost::all();
         $blogpost = blogpost::paginate(3);
+        return $blogpost;
+      }
+     
+    function byid($id) {
+        $blogpost = blogpost::find($id);
+        return $blogpost;
+      }
+      
+    function reletedPost($by_Category) {
+        $blogpost = blogpost::where('by_Category',"=",$by_Category)->take(3)->get();
         return $blogpost;
       }
 }
