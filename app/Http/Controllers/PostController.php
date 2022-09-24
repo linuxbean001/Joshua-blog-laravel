@@ -28,20 +28,6 @@ class PostController extends Controller
       }
 
     function AddPost(Request $req) {
-      $validator =  Validator::make($req->all(),[
-        'title' => 'required',
-        'desc' => 'required',
-        'img_url'=> 'required',
-        'by_Category' => 'required',
-        'by_Author' => 'required',
-    ]);
-    if($validator->fails()){
-        return response()->json([
-            'success' => false, 
-            "error" => 'validation_error',
-            "message" => $validator->errors(),
-        ], 422);
-    } 
       try{
         $AddPost = new blogpost;
         $AddPost->title = $req->input('title');
@@ -51,9 +37,8 @@ class PostController extends Controller
           $image_name = $image->getClientOriginalName();
           $image->move(public_path('/images'),$image_name);
           $image_path = "/images/" . $image_name;
-          
           $AddPost->img_url=$image_path;
-      }
+        }
         $AddPost->by_Category = $req->input('by_Category');
         $AddPost->by_Author = $req->input('by_Author');
         $AddPost->save();
