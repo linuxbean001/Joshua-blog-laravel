@@ -50,6 +50,43 @@ class PostController extends Controller
         ], 400);
     }
       }
-   
+  
+  
+      function editPost(Request $req){
+        
+        $blogpost = blogpost::find($req->id);
+        $blogpost->title= $req->input('title');
+        $blogpost->desc=  $req->input('desc');
+        if($req->hasFile('img_url')){
+          $image = $req->file('img_url');
+          $image_name = $image->getClientOriginalName();
+          $image->move(public_path('/images'),$image_name);
+          $image_path = "/images/" . $image_name;
+          $blogpost->img_url=$image_path;
+        }
+        $blogpost->by_Category=  $req->input('by_Category');
+        $blogpost->by_Author=$req->input('by_Author');
+        $result=$blogpost->save(); 
+        
+        if($result){
+          return["result"=>"Blog Update"];
+        }
+        else{
+          return["result"=>"Blog  Not Update"];
+        }
+      }
+
+      function deletePost ($id)
+      { 
+        $blogpost = blogpost::find($id);
+       $result= $blogpost -> delete();
+       
+      if($result){
+        return["result"=>"Blog is Deleted"];
+      }
+      else{
+        return["result"=>"Blog  Not Deleted"];
+      }  
+      }
 
 }

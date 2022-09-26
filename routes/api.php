@@ -22,3 +22,5 @@ Route::get("data",[PostController::class,'list']);
 Route::get("blogDetail/{id}",[PostController::class,'byid']);
 Route::get("relatedBlog/{by_Category}",[PostController::class,'reletedPost']);
 Route::Post("addpost",[PostController::class,'AddPost']);
+Route::Post("editBlog",[PostController::class,'editPost']);
+Route::Post("deletePost/{id}",[PostController::class,'deletePost']);
