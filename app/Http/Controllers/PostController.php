@@ -14,6 +14,7 @@ class PostController extends Controller
 
     function list() {
         $blogpost = blogpost::all();
+        
         return $blogpost;
       }
      
@@ -79,13 +80,13 @@ class PostController extends Controller
       function deletePost ($id)
       { 
         $blogpost = blogpost::find($id);
-       $result= $blogpost -> delete();
+       $result= $blogpost->delete();
        
       if($result){
-        return["result"=>"Blog is Deleted"];
+        return['success' => 200, "result"=>"Blog is Deleted"];
       }
       else{
-        return["result"=>"Blog  Not Deleted"];
+        return['error' => 404, "result"=>"Blog  Not Deleted"];
       }  
       }
 
