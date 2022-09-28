@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\PostController;
+use  App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +25,4 @@ Route::get("relatedBlog/{by_Category}",[PostController::class,'reletedPost']);
 Route::Post("addpost",[PostController::class,'AddPost']);
 Route::Post("editBlog",[PostController::class,'editPost']);
 Route::Post("deletePost/{id}",[PostController::class,'deletePost']);
+Route::Post("addComment",[CommentController::class,'postComment']);

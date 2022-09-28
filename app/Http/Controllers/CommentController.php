@@ -11,11 +11,10 @@ class CommentController extends Controller
     function postComment(Request $req) 
     {
         $comments = new Comment;
-        $comments ->name = $req->name;
-        $comments ->id = $req->id;
-        $comments ->email = $req->email;
-        $comments ->message= $req->message;
-        $result = $comments->save ();
+        $comments ->name = $req->input('name');
+        $comments ->email = $req->input('email');
+        $comments ->message= $req->input('message');
+        $result = $comments->save();
         if($result)
         {
           return ["Result"=>"Data has been saved"];
